@@ -1,0 +1,11 @@
+Package: ggpca
+Type: Package
+Title: PCA, PCoA, and NMD analysis based ggplot2
+Version: 0.0.1
+Author: ZhonghuiGai
+Maintainer: ZhonghuiGai <zhgai@aliyun.com>
+Description: beta analysis and plot using ggplot2, the input data must be a data.frame containing the grouping information in the first collumn
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
