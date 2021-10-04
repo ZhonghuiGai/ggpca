@@ -3,6 +3,7 @@
 #' @param data A data frame containing the first collumn as the grouping information
 #' @param pc Which PC to present, one of 12, 13, 23, the default value is 12
 #' @param level default value is 0.68
+#' @param p.value boolean value to indicate whether to show the adonis p value, default value is TURE
 #'
 #' @return
 #' @export
@@ -14,7 +15,8 @@
 #' colnames(data)[1] <- "group"
 #' ggPCoA(data)
 ggPCoA <- function(data, pc = 12,
-                   level = 0.68){
+                   level = 0.68,
+                   p.value = TRUE){
   dis <- vegan::vegdist(data[, -1], method = "bray")
   pcoa <- ape::pcoa(dis, correction = "none", rn = NULL)
   eig <- round(100*pcoa$values[1:3, 2], 2)
@@ -57,11 +59,14 @@ ggPCoA <- function(data, pc = 12,
     stat_ellipse(level = level,  linetype = 3,
                  geom = "polygon", alpha = 0.02,
                  aes(fill = group), show.legend = FALSE) +
-    xlab(x.lab) + ylab(y.lab) +
-    annotate(geom = "text", x = x.posi, y = y.posi*1.25,
-             label = paste0("adonis: p.value =  ", p.v),
-             size = 4.5, fontface = "bold.italic",
-             colour = ifelse(p.v < 0.05, "red1", "black"))
+    xlab(x.lab) + ylab(y.lab)
+  if (p.value) {
+    p <- p +
+      annotate(geom = "text", x = x.posi, y = y.posi*1.25,
+               label = paste0("adonis: p.value =  ", p.v),
+               size = 4.5, fontface = "bold.italic",
+               colour = ifelse(p.v < 0.05, "red1", "black"))
+  }
   p <- p + theme(panel.grid = element_line(color = 'gray90', size = 0.1),
                panel.background = element_rect(color = 'gray60',
                                                fill = 'transparent', size = 1),

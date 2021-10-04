@@ -4,7 +4,7 @@
 \alias{ggPCoA}
 \title{PCoA plot based on ggplot2 using the bray distance}
 \usage{
-ggPCoA(data, pc = 12, level = 0.68)
+ggPCoA(data, pc = 12, level = 0.68, p.value = TRUE)
 }
 \arguments{
 \item{data}{A data frame containing the first collumn as the grouping information}
@@ -12,6 +12,8 @@ ggPCoA(data, pc = 12, level = 0.68)
 \item{pc}{Which PC to present, one of 12, 13, 23, the default value is 12}
 
 \item{level}{default value is 0.68}
+
+\item{p.value}{boolean value to indicate whether to show the adonis p value, default value is TURE}
 }
 \value{
 
